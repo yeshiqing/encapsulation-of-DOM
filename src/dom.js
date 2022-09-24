@@ -13,7 +13,10 @@ window.dom = {
                 "#": "id",
                 ".": "className"
             }
-            ele[hashMap[symbol]] = attrValue
+            let attrName = hashMap[symbol]
+            ele[attrName] = attrValue
+            // b56bd620fd1714ae8a2aa13189cf9fd1938cdcf7
+            // dbade65f106b8fbe381cd27a50a648702ffd2101
             template.innerHTML = ele.outerHTML
         } else {
             template.innerHTML = string.trim()
