@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.png">
+    <title>第31课课程作业</title>
+    <style>
+        .illustrate{
+            color:grey;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+        <span class="illustrate">#test 元素的子元素：</span>
+        <span class="red">111</span>
+        <span class="pink">222</span>
+        <span class="yellow">333</span>
+    </div>
+    <br>
+    <div>
+        <div class="illustrate">以下是 class="red" 的元素</div>
+        <div class="red">aaa</div>
+        <div class="red purple">bbb</div>
+        <div class="red color">ccc</div>
+    </div>
+    <script src="dom.js"></script>
+    <script type="text/javascript">
+        const div = dom.find('#test>.red')[0] // 获取对应的元素
+        dom.style(div, 'color', 'red') // 设置 div.style.color
+
+        const divList = dom.find('.red') // 获取多个 div.red 元素
+        dom.each(divList, (n)=> console.log(n)) // 遍历 divList 里的所有元素
+    </script>
+</body>
+</html>
