@@ -9,18 +9,17 @@
     <title>first schema encapsulation of DOM</title>
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.png">
     <style>
-        .red {
-            background: red;
+        p.api{
+            font: bold 20px/1.4 Aria;
         }
     </style>
 </head>
 
 <body>
-    示例333
+    <p class="api">【API】create、after、before、wrap、attr、text、style、class、on、off</p>
     <div id="create">
         <div id="test">
             <span>test1</span>
-            <p class="red">段落标签3</p>
             <span>test2</span>
         </div>
         <div id="test2">
@@ -28,6 +27,7 @@
         </div>
     </div>
 
+    <p class="api">【API】empty</p>
     <div id="empty">
         <div id="e1"></div>
         <div id="e2"></div>
@@ -39,7 +39,7 @@
         <div id="s2"></div>
         <div id="s3"></div>
     </div>
-    <div id="travel">
+    <div id="traversal">
         <div id="t1">t1</div>
         <div id="t2">t2</div>
         <div id="t3">t3</div>
