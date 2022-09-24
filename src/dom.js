@@ -9,15 +9,11 @@ window.dom = {
             let ele = document.createElement(foundArr[1])
             let symbol = foundArr[2]
             let attrValue = foundArr[3]
-            switch (symbol) {
-                case "#":
-                    ele.id = attrValue
-                    break;
-                case ".":
-                    ele.className = attrValue
-                default:
-                    break
+            let hashMap = {
+                "#": "id",
+                ".": "className"
             }
+            ele[hashMap[symbol]] = attrValue
             template.innerHTML = ele.outerHTML
         } else {
             template.innerHTML = string.trim()
