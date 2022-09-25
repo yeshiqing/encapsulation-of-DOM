@@ -34,20 +34,27 @@ window.dom = {
     wrap(node, nodeWrapper) {
         node.parentNode.insertBefore(nodeWrapper, node)
         nodeWrapper.appendChild(node)
+        // 1. 老师用的是自创的 API：dom.before 和 dom.append
+        // 2. 老师的命名似乎更简洁 nodeWrapper 换成 parent
+        // dom.before(node, nodeWrapper)
+        // dom.append(parent, node)
     },
     // 删
     remove(node) {
         node.remove()
+        // 为了兼容 IE
+        // node.parentNode.removeChild(node)
+        return node
     },
     empty(node) {
         let children = node.children
-        let array = []
+        let array = [] // const aray = []
         children = Array.from(children)
-        let child = children.shift()
-        while (child) {
-            array.push(child)
+        let child = null
+        do {
             child = children.shift()
-        }
+            array.push(child)
+        } while (child)
 
         return array
     },
@@ -60,10 +67,11 @@ window.dom = {
         }
     },
     text(node, text) {
+        let key = ('innerText' in node) ? 'innerText' : 'textContent'
         if (arguments.length === 2) {
-            node.innerText = text
+            node[key] = text
         } else if (arguments.length === 1) {
-            return node.innerText
+            return node[key]
         }
     },
     html(node, html) {
@@ -106,11 +114,7 @@ window.dom = {
     },
     // 查
     find(selector, scope) {
-        if (arguments.length === 1) {
-            return document.querySelectorAll(selector)
-        } else if (arguments.length === 2) {
-            return scope.querySelectorAll(selector)
-        }
+        return (scope || document).querySelectorAll(selector)
     },
     parent(node) {
         return node.parentNode
@@ -119,7 +123,7 @@ window.dom = {
         return node.children
     },
     siblings(node) { // 这个函数写得很漂亮，数组的高级用法 Array.from，Array.prototype.filter
-        return Array.from(node.parentNode.children).filter(n => (n !== node))
+        return Array.from(node.parentNode.children).filter(n => n !== node)
     },
     next(node) {
         do {
@@ -137,7 +141,7 @@ window.dom = {
         Array.from(nodeList).forEach(fn)
     },
     index(node) {
-        let children = node.parentNode.children
+        let children = node.parentNode.children // 老师用 const
         for (let i = 0; i < children.length; i++) {
             if (node === children[i]) {
                 return i
