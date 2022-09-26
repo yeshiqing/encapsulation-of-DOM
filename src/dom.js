@@ -22,6 +22,7 @@ window.dom = {
         return template.content.firstElementChild
     },
     after(node, nodeAfter) {
+        // 考虑边界，即使 node.nextSibling 是 null 也是满足要求的。
         node.parentNode.insertBefore(nodeAfter, node.nextSibling)
     },
     before(node, nodeBefore) {
@@ -36,23 +37,24 @@ window.dom = {
         // 1. 老师用的是自创的 API：dom.before 和 dom.append
         // 2. 老师的命名似乎更简洁 nodeWrapper 换成 parent
         // dom.before(node, nodeWrapper)
-        // dom.append(parent, node)
+        // dom.append(nodeWrapper, node)
     },
     // 删
     remove(node) {
         node.remove()
         // 为了兼容 IE
         // node.parentNode.removeChild(node)
+
         return node
     },
     empty(node) {
-        let children = node.children
-        let array = [] // const aray = []
-        children = Array.from(children)
+        let { childNodes } = node
+        const array = []
+        childNodes = Array.from(childNodes)
         let child = null
         do {
-            child = children.shift()
-            array.push(child)
+            child = childNodes.shift()
+            array.push(dom.remove(child))
         } while (child)
 
         return array
