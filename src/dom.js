@@ -1,4 +1,3 @@
-// TODO: 先自己写一遍然后和方方的，自己笔记的对比一下
 window.dom = {
     // 增
     create(string) {
