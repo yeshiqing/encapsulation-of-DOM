@@ -124,13 +124,13 @@ window.dom = {
     next(node) {
         do {
             node = node.nextSibling
-        } while (node.nodeType !== 1)
+        } while (node && node.nodeType !== 1)
         return node
     },
     previous(node) {
         do {
             node = node.previousSibling
-        } while (node.nodeType !== 1)
+        } while (node && node.nodeType !== 1)
         return node
     },
     each(nodeList, fn) {

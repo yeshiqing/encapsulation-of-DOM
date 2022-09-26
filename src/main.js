@@ -20,7 +20,6 @@ const emptyDiv = document.querySelector('#empty')
 const nodes = dom.empty(emptyDiv)
 // console.log(nodes)
 
-
 dom.attr(testDiv, 'title', 'Hi, I am Jeffrey')
 const title = dom.attr(testDiv, 'title')
 // console.log(`title: ${title}`)
