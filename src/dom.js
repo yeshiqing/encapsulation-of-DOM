@@ -41,21 +41,16 @@ window.dom = {
     },
     // 删
     remove(node) {
-        node.remove()
         // 为了兼容 IE
-        // node.parentNode.removeChild(node)
+        node.parentNode.removeChild(node)
 
         return node
     },
     empty(node) {
-        let { childNodes } = node
         const array = []
-        childNodes = Array.from(childNodes)
-        let child = null
         do {
-            child = childNodes.shift()
-            array.push(dom.remove(child))
-        } while (child)
+            array.push(dom.remove(node.firstChild))
+        } while (node.firstChild)
 
         return array
     },
