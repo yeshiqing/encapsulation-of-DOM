@@ -11,9 +11,9 @@ window.jQuery = function (selectorOrArray) {
         _oldApi: null,
         find(selector) {
             let array = []
-            for (let i = 0; i < elements.length; i++) {
-                array = array.concat(Array.from(elements[i].querySelectorAll(selector)))
-            }
+            this.each((ele, i) => {
+                array = array.concat(Array.from(ele.querySelectorAll(selector)))
+            })
             let newApi = jQuery(array)
             newApi._oldApi = this
             return newApi
@@ -22,9 +22,9 @@ window.jQuery = function (selectorOrArray) {
             return this._oldApi
         },
         addClass(className) {
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].classList.add(className)
-            }
+            this.each((ele, i) => {
+                ele.classList.add(className)
+            })
             return this
         },
         each(fn) {
